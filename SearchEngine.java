@@ -21,23 +21,29 @@ class Handler implements URLHandler {
                     num += Integer.parseInt(parameters[1]);
                     return String.format("Number increased by %s! It's now %d", parameters[1], num);
                 }
-                if(parameters[0].equals("?s")){
+                if(parameters[0].equals("s")){
                     searches.add(parameters[1]);
-                    return String.format(format: "%s string added", parameters[1]);
+                    return String.format("%s string added", parameters[1],searches);
 
-            }
+                }
+
+                }
             if (url.getPath().contains("/search")) {
                 String[] parameters = url.getQuery().split("=");
-                if(parameters[0].equals("?s")){
-                    searches.add(parameters[1]);
-                    return String.format(format: "%s string added", parameters[1]);
+                if(parameters[0].equals("s")){
+                    return String.format("list: "+ searches, parameters[1],searches);
             }
-            
+        }
+
 
             return "404 Not Found!";
-        }
+        
+        
     }
 }
+
+}
+
 
 class SearchEngine {
     public static void main(String[] args) throws IOException {
